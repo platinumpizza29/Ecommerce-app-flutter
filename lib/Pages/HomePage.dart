@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:ecommerce/Components/DrawerComp.dart';
 import 'package:ecommerce/Pages/ProductDetails.dart';
+import 'package:ecommerce/Providers/CartProvider.dart';
 import 'package:ecommerce/Services/ProductService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,7 +28,10 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         actions: [
           IconButton(
-            icon: Icon(Icons.shopping_cart),
+            icon: Badge(
+              label: Text("${context.watch<CartProvider>().count}"),
+              child: Icon(Icons.shopping_cart),
+            ),
             onPressed: () {},
           )
         ],

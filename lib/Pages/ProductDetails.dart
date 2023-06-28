@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_interpolation_to_compose_strings
 
+import 'package:ecommerce/Providers/CartProvider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetails extends StatefulWidget {
   final String image;
@@ -85,7 +87,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                                     style: GoogleFonts.spaceGrotesk(
                                         color: Colors.white),
                                   ),
-                                  onPressed: () {})
+                                  onPressed: () {
+                                    context.read<CartProvider>().addToCart();
+                                  })
                             ],
                           ),
                         )
