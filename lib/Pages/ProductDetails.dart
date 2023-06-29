@@ -24,6 +24,8 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  bool isLiked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +34,17 @@ class _ProductDetailsState extends State<ProductDetails> {
               onPressed: () => Navigator.pop(context),
               icon: Icon(CupertinoIcons.chevron_back)),
           actions: [
-            IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.heart))
+            IconButton(
+                onPressed: () {
+                  setState(() {
+                    isLiked = !isLiked;
+                  });
+                  context.read<CartProvider>().addTolikedItems(
+                      widget.title, widget.image, widget.price, isLiked);
+                },
+                icon: isLiked == false
+                    ? Icon(CupertinoIcons.heart)
+                    : Icon(CupertinoIcons.heart_fill))
           ],
         ),
         body: Column(children: <Widget>[
@@ -89,6 +101,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   ),
                                   onPressed: () {
                                     context.read<CartProvider>().addToCart();
+                                    context.read<CartProvider>().addToBasket(
+                                        widget.title,
+                                        widget.image,
+                                        widget.price);
                                   })
                             ],
                           ),

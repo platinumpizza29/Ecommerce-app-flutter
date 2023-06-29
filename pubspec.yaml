@@ -40,6 +40,8 @@ dependencies:
   cloud_firestore: ^4.8.2
   floating_navbar: ^2.0.2
   provider: ^6.0.5
+  profile: ^0.0.1
+  lottie: ^2.4.0
 
 dev_dependencies:
   flutter_test:

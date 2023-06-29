@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
 
+import 'package:ecommerce/Pages/CartPage.dart';
 import 'package:ecommerce/Pages/LikedPage.dart';
+import 'package:ecommerce/Pages/ProfilePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -39,6 +41,10 @@ class DrawerComp extends StatelessWidget {
               Align(
                 alignment: Alignment.center,
                 child: ListTile(
+                  onTap: () {
+                    Navigator.push(context,
+                        CupertinoPageRoute(builder: (context) => CartPage()));
+                  },
                   leading: Icon(
                     Icons.shopping_cart,
                     color: Colors.black,
@@ -74,6 +80,8 @@ class DrawerComp extends StatelessWidget {
                     style: GoogleFonts.spaceGrotesk(
                         color: Colors.black, fontSize: 25),
                   ),
+                  onTap: () => Navigator.push(context,
+                      CupertinoPageRoute(builder: (context) => ProfilePage())),
                 ),
               ),
               Align(

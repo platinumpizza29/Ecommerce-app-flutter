@@ -6,35 +6,35 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class LikedPage extends StatefulWidget {
-  const LikedPage({super.key});
+class CartPage extends StatefulWidget {
+  const CartPage({super.key});
 
   @override
-  State<LikedPage> createState() => _LikedPageState();
+  State<CartPage> createState() => _CartPageState();
 }
 
-class _LikedPageState extends State<LikedPage> {
+class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
-    List<dynamic> likedItems = context.watch<CartProvider>().likedItems;
+    List<dynamic> cartItems = context.watch<CartProvider>().basketItems;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
             onPressed: () => Navigator.pop(context),
             icon: Icon(CupertinoIcons.chevron_back)),
         title: Text(
-          "Liked",
+          "My Cart",
           style: GoogleFonts.spaceGrotesk(),
         ),
       ),
       body: ListView.builder(
-        itemCount: likedItems.length,
+        itemCount: cartItems.length,
         itemBuilder: (context, index) {
           // TODO: implement build
           return Padding(
             padding: EdgeInsets.all(10),
             child: ListTile(
-              leading: Image.network(likedItems[index]["image"]),
+              leading: Image.network(cartItems[index]["image"]),
               trailing: IconButton(
                 onPressed: () {
                   context.read<CartProvider>().removeFromBasket(index);
@@ -45,11 +45,11 @@ class _LikedPageState extends State<LikedPage> {
                 ),
               ),
               title: Text(
-                likedItems[index]["title"],
+                cartItems[index]["title"],
                 style: GoogleFonts.spaceGrotesk(fontSize: 25),
               ),
               subtitle: Text(
-                "£" + likedItems[index]["price"],
+                "£" + cartItems[index]["price"],
                 style: GoogleFonts.spaceGrotesk(fontSize: 17),
               ),
             ),

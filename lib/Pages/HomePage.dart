@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:ecommerce/Components/DrawerComp.dart';
+import 'package:ecommerce/Pages/CartPage.dart';
 import 'package:ecommerce/Pages/ProductDetails.dart';
 import 'package:ecommerce/Providers/CartProvider.dart';
 import 'package:ecommerce/Services/ProductService.dart';
@@ -32,7 +33,10 @@ class _HomePageState extends State<HomePage> {
               label: Text("${context.watch<CartProvider>().count}"),
               child: Icon(Icons.shopping_cart),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  CupertinoPageRoute(builder: (context) => CartPage()));
+            },
           )
         ],
       ),
@@ -41,17 +45,20 @@ class _HomePageState extends State<HomePage> {
         children: [
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: RichText(
-                text: TextSpan(
-                    text: "Hey! Checkout our",
-                    style: GoogleFonts.spaceGrotesk(fontSize: 30),
-                    children: [
-                  TextSpan(
-                      text: " new designs",
-                      style: TextStyle(
-                        color: Color(0xFFCAF76F),
-                      ))
-                ])),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: RichText(
+                  text: TextSpan(
+                      text: "Top",
+                      style: GoogleFonts.spaceGrotesk(fontSize: 30),
+                      children: [
+                    TextSpan(
+                        text: " Picks",
+                        style: TextStyle(
+                          color: Color(0xFFCAF76F),
+                        ))
+                  ])),
+            ),
           ),
           SizedBox(
             height: 20,
