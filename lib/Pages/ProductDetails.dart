@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_interpolation_to_compose_strings
 
+import 'package:ecommerce/Providers/CartProvider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetails extends StatefulWidget {
   final String image;
@@ -22,6 +24,8 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  bool isLiked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +34,17 @@ class _ProductDetailsState extends State<ProductDetails> {
               onPressed: () => Navigator.pop(context),
               icon: Icon(CupertinoIcons.chevron_back)),
           actions: [
-            IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.heart))
+            IconButton(
+                onPressed: () {
+                  setState(() {
+                    isLiked = !isLiked;
+                  });
+                  context.read<CartProvider>().addTolikedItems(
+                      widget.title, widget.image, widget.price);
+                },
+                icon: isLiked == false
+                    ? Icon(CupertinoIcons.heart)
+                    : Icon(CupertinoIcons.heart_fill))
           ],
         ),
         body: Column(children: <Widget>[
@@ -85,7 +99,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                                     style: GoogleFonts.spaceGrotesk(
                                         color: Colors.white),
                                   ),
-                                  onPressed: () {})
+                                  onPressed: () {
+                                    context.read<CartProvider>().addToCart();
+                                    context.read<CartProvider>().addToBasket(
+                                        widget.title,
+                                        widget.image,
+                                        widget.price);
+                                  })
                             ],
                           ),
                         )
