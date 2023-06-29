@@ -40,7 +40,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     isLiked = !isLiked;
                   });
                   context.read<CartProvider>().addTolikedItems(
-                      widget.title, widget.image, widget.price, isLiked);
+                      widget.title, widget.image, widget.price);
                 },
                 icon: isLiked == false
                     ? Icon(CupertinoIcons.heart)

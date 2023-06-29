@@ -4,10 +4,12 @@ import 'package:flutter/cupertino.dart';
 // After you press add to basket
 class CartProvider with ChangeNotifier {
   int _cartCount = 0;
+  bool _isLiked = false;
   List<dynamic> basketItems = [];
   List<dynamic> likedItems = [];
 
   int get count => _cartCount;
+  bool get isLiked => _isLiked;
   List<dynamic> get items => basketItems;
   List<dynamic> get liked => likedItems;
 
@@ -21,18 +23,23 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  set isLiked(bool value) {
+    _isLiked = value;
+  }
+
   void removeFromBasket(index) {
     items.removeAt(index);
+    _cartCount--;
     notifyListeners();
   }
 
-  void addTolikedItems(title, image, price, isLiked) {
-    if (isLiked == true) {
-      liked.add({"title": title, "image": image, "price": price});
-      notifyListeners();
-    } else {
-      liked.removeWhere((element) => element == title);
-      notifyListeners();
-    }
+  void addTolikedItems(title, image, price) {
+    liked.add({"title": title, "image": image, "price": price});
+    notifyListeners();
+  }
+
+  void removeFromLiked(index) {
+    liked.removeAt(index);
+    notifyListeners();
   }
 }

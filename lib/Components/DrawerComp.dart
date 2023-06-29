@@ -3,6 +3,7 @@
 import 'package:ecommerce/Pages/CartPage.dart';
 import 'package:ecommerce/Pages/LikedPage.dart';
 import 'package:ecommerce/Pages/ProfilePage.dart';
+import 'package:ecommerce/Pages/SettingsPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -87,6 +88,8 @@ class DrawerComp extends StatelessWidget {
               Align(
                 alignment: Alignment.center,
                 child: ListTile(
+                  onTap: () => Navigator.push(context,
+                      CupertinoPageRoute(builder: (context) => SettingsPage())),
                   leading: Icon(CupertinoIcons.settings, color: Colors.black),
                   title: Text(
                     "Settings",

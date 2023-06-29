@@ -37,7 +37,7 @@ class _LikedPageState extends State<LikedPage> {
               leading: Image.network(likedItems[index]["image"]),
               trailing: IconButton(
                 onPressed: () {
-                  context.read<CartProvider>().removeFromBasket(index);
+                  context.read<CartProvider>().removeFromLiked(index);
                 },
                 icon: Icon(
                   CupertinoIcons.trash,
