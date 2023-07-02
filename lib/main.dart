@@ -1,5 +1,6 @@
 import 'package:ecommerce/Pages/HomePage.dart';
 import 'package:ecommerce/Providers/CartProvider.dart';
+import 'package:ecommerce/Services/WidgetTree.dart';
 import 'package:ecommerce/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.dark(),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: WidgetTree(),
     );
   }
 }

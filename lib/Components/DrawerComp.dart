@@ -2,14 +2,20 @@
 
 import 'package:ecommerce/Pages/CartPage.dart';
 import 'package:ecommerce/Pages/LikedPage.dart';
+import 'package:ecommerce/Pages/LoginPage.dart';
 import 'package:ecommerce/Pages/ProfilePage.dart';
 import 'package:ecommerce/Pages/SettingsPage.dart';
+import 'package:ecommerce/Services/UserService.dart';
+import 'package:ecommerce/Services/authService.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DrawerComp extends StatelessWidget {
-  const DrawerComp({super.key});
+  DrawerComp({super.key});
+
+  final User? user = AuthService().currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +36,7 @@ class DrawerComp extends StatelessWidget {
                         backgroundColor: Color(0xFF353535),
                       )),
                   title: Text(
-                    "Keyur Bilgi",
+                    "${user!.email}",
                     style: GoogleFonts.spaceGrotesk(
                         color: Colors.black, fontSize: 25),
                   ),
@@ -102,7 +108,9 @@ class DrawerComp extends StatelessWidget {
               CupertinoButton(
                 child: Text("Logout",
                     style: GoogleFonts.spaceGrotesk(color: Colors.white)),
-                onPressed: () {},
+                onPressed: () async {
+                  await AuthService().signOut();
+                },
                 color: CupertinoColors.systemRed,
               ),
             ],

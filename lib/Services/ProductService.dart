@@ -1,14 +1,6 @@
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dio/dio.dart';
 
 class Products {
-  // Future<List<dynamic>> getAllProducts() async {
-  //   var uri = "https://fakestoreapi.com/products";
-  //   Response response = await Dio().get(uri);
-  //   return response.data;
-  // }
   final String title;
   final String imageUrl;
   final String description;
