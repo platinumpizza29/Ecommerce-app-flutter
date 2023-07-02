@@ -18,44 +18,48 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     List<dynamic> cartItems = context.watch<CartProvider>().basketItems;
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: Icon(CupertinoIcons.chevron_back)),
-        title: Text(
-          "My Cart",
-          style: GoogleFonts.spaceGrotesk(),
+        appBar: AppBar(
+          leading: IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: Icon(CupertinoIcons.chevron_back)),
+          title: Text(
+            "My Cart",
+            style: GoogleFonts.spaceGrotesk(),
+          ),
         ),
-      ),
-      body: ListView.builder(
-        itemCount: cartItems.length,
-        itemBuilder: (context, index) {
-          // TODO: implement build
-          return Padding(
-            padding: EdgeInsets.all(10),
-            child: ListTile(
-              leading: Image.network(cartItems[index]["image"]),
-              trailing: IconButton(
-                onPressed: () {
-                  context.read<CartProvider>().removeFromBasket(index);
+        body: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: cartItems.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.all(10),
+                    child: ListTile(
+                      leading: Image.network(cartItems[index]["image"]),
+                      trailing: IconButton(
+                        onPressed: () {
+                          context.read<CartProvider>().removeFromBasket(index);
+                        },
+                        icon: Icon(
+                          CupertinoIcons.trash,
+                          color: CupertinoColors.destructiveRed,
+                        ),
+                      ),
+                      title: Text(
+                        cartItems[index]["title"],
+                        style: GoogleFonts.spaceGrotesk(fontSize: 25),
+                      ),
+                      subtitle: Text(
+                        "£" + cartItems[index]["price"],
+                        style: GoogleFonts.spaceGrotesk(fontSize: 17),
+                      ),
+                    ),
+                  );
                 },
-                icon: Icon(
-                  CupertinoIcons.trash,
-                  color: CupertinoColors.destructiveRed,
-                ),
-              ),
-              title: Text(
-                cartItems[index]["title"],
-                style: GoogleFonts.spaceGrotesk(fontSize: 25),
-              ),
-              subtitle: Text(
-                "£" + cartItems[index]["price"],
-                style: GoogleFonts.spaceGrotesk(fontSize: 17),
               ),
             ),
-          );
-        },
-      ),
-    );
+          ],
+        ));
   }
 }
