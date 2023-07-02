@@ -47,6 +47,22 @@ class _ProfilePageState extends State<ProfilePage> {
             SizedBox(
               height: 20,
             ),
+            ListTile(
+              leading: Icon(
+                LineIcons.receipt,
+                color: CupertinoColors.activeGreen,
+              ),
+              trailing: Icon(
+                Icons.chevron_right,
+                color: CupertinoColors.activeGreen,
+              ),
+              title: Text(
+                "My Orders",
+                style: GoogleFonts.spaceGrotesk(fontSize: 20),
+              ),
+              onTap: () => Navigator.push(context,
+                  CupertinoPageRoute(builder: (context) => MyOrdersPage())),
+            ),
             Expanded(
               child: Container(
                 child: FutureBuilder(
